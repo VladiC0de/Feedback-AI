@@ -64,7 +64,3 @@ Feedback-AI ist eine benutzerfreundliche Anwendung zur Analyse von Kundenfeedbac
 - **Encoding-Probleme**: Wenn Ihre CSV-Datei Sonderzeichen enthält, die nicht korrekt angezeigt werden, versuchen Sie, die Datei mit UTF-8-Encoding zu speichern.
 - **Fehlende 'text'-Spalte**: Stellen Sie sicher, dass Ihre CSV-Datei eine Spalte mit genau dem Namen `text` enthält.
 - **Lange Ladezeiten**: Bei großen Dateien oder komplexen Texten kann die Analyse länger dauern. Bitte haben Sie Geduld.
-
-## Technischer Support
-
-Bei Fragen oder Problemen mit der Anwendung wenden Sie sich bitte an den Support unter support@feedback-ai.example.com.
