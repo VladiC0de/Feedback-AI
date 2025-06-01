@@ -1,3 +1,0 @@
-| Name             | Inhalt                                | Herkunft                                                 | Format | Datenmenge | Qualität                                  |
-| ---------------- | ------------------------------------- | -------------------------------------------------------- | ------ | ---------- | ----------------------------------------- |
-| `google_reviews` | Kundenbewertungen mit Text und Sterne | Öffentliche Google Reviews                               | CSV    | ca. 40–50  | Realistische Daten aus echten Bewertungen |
