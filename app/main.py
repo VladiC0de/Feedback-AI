@@ -9,8 +9,9 @@ from sklearn.decomposition import LatentDirichletAllocation
 # ———————————————————————————————————————————
 st.set_page_config(
     page_title="Kundenfeedback-Analyse für KMU",
-    layout="wide"
+    layout="centered"
 )
+st.image("static/logo.png", width=200)
 
 # ———————————————————————————————————————————
 # CSS: Nur die Textspalte umbrechen, alle anderen Spalten normal
