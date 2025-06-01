@@ -107,13 +107,3 @@ Die Anwendung kann Kundenfeedback aus verschiedenen Quellen verarbeiten:
 - Umfrageergebnisse
 
 Eine detaillierte Übersicht der Datenquellen finden Sie in der [Dateninventar-Tabelle](notebooks/data_inventory.xlsx).
-
-## Lizenz
-
-Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die [LICENSE](LICENSE) Datei für Details.
-
-## Kontakt
-
-Bei Fragen oder Anregungen wenden Sie sich bitte an:
-- E-Mail: kontakt@feedback-ai.example.com
-- GitHub: [github.com/username/feedback-ai](https://github.com/username/feedback-ai)
