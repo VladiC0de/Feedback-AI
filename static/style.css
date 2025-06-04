@@ -45,6 +45,22 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Download-Button-Stile (gleiches Styling wie primäre Buttons) */
+.stDownloadButton > button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.stDownloadButton > button:hover {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Spinner-Stile */
 .stSpinner > div {
   border-color: var(--secondary-color) transparent transparent transparent;
@@ -77,20 +93,142 @@ h1 {
   background-color: rgba(52, 152, 219, 0.1);
 }
 
-.logo-container {
-  text-align: center;
-  margin-bottom: 1rem;
+/* Formular-Elemente */
+
+/* Text-Eingabefeld */
+.stTextInput > div > input {
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+  background-color: white;
 }
 
+/* Text-Area */
+.stTextArea > div > textarea {
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+  background-color: white;
+  resize: vertical;
+}
+
+/* Selectbox (Dropdown) */
+.stSelectbox > div > div > div[role="button"] {
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+  background-color: white;
+  cursor: pointer;
+}
+
+.stSelectbox > div > div > div[role="button"]:hover {
+  border-color: var(--secondary-color);
+}
+
+/* Slider (Range Input) */
+.stSlider > div > input[type="range"] {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.stSlider > div > input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.stSlider > div > input[type="range"]::-moz-range-thumb {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Checkbox (Label-Stil) */
+.stCheckbox > div > label {
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+}
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-  
-  .stButton > button, 
+
+/* Mobile: bis 575px */
+@media (max-width: 575px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+
+  /* Buttons (inkl. Download-Button) */
+  .stButton > button,
   .stDownloadButton > button {
+    width: 100% !important;
+    min-height: 44px;
+  }
+
+  /* Text-Eingabe und Text-Area */
+  .stTextInput > div > input,
+  .stTextArea > div > textarea {
     width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  /* Selectbox und Slider */
+  .stSelectbox > div > div > div[role="button"],
+  .stSlider > div > input[type="range"] {
+    width: 100% !important;
+  }
+}
+
+/* Tablet: von 576px bis 991px */
+@media (min-width: 576px) and (max-width: 991px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  /* Buttons (inkl. Download-Button) auf 80% Breite zentriert */
+  .stButton > button,
+  .stDownloadButton > button {
+    width: 80% !important;
+    min-height: 44px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  /* Text-Eingabe und Text-Area */
+  .stTextInput > div > input,
+  .stTextArea > div > textarea {
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Desktop: ab 992px */
+@media (min-width: 992px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+
+  /* Buttons (inkl. Download-Button) auf automatische Breite */
+  .stButton > button,
+  .stDownloadButton > button {
+    width: auto !important;
+    min-height: 36px;
+  }
+
+  /* Text-Eingabe und Text-Area */
+  .stTextInput > div > input,
+  .stTextArea > div > textarea {
+    width: 60%;
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 }

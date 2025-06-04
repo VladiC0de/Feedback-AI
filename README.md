@@ -71,8 +71,7 @@ Mittels CountVectorizer wird eine Dokument-Term-Matrix erstellt. LDA extrahiert 
 **Visualisierung & Export (Streamlit: DataFrame, Charts, Download-Buttons)**  
 Die Ergebnisse werden in einer interaktiven Oberfläche dargestellt. Export als CSV ist jederzeit möglich.
 
-![Modellarchitektur](docs/model_architecture.png)
-
+![Modellarchitektur](Modellarchitektur.png)
 
 ## Installation
 
