@@ -11,7 +11,13 @@ st.set_page_config(
     page_title="Kundenfeedback-Analyse für KMU",
     layout="centered"
 )
-st.image("static/logo.png", width=200)
+with open("static/style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("static/logo.png", width=400)
+
 
 # ———————————————————————————————————————————
 # CSS: Nur die Textspalte umbrechen, alle anderen Spalten normal

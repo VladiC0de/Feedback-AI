@@ -48,6 +48,32 @@ feedback-ai/
 └── requirements.txt       → Abhängigkeiten
 ```
 
+## Modellarchitektur und Datenfluss
+
+Unten sehen Sie die grafische Übersicht über die Hauptkomponenten und den Datenfluss unserer KI-Anwendung.  
+Das Responsive Design (Desktop & Mobile) beeinflusst dabei ausschließlich die Darstellung des letzten Blocks (Visualisierung & Export).
+
+**Frontend / Responsive Design (Desktop & Mobile)**  
+Dieser Block steht oberhalb der Pipeline und zeigt, dass sich die Darstellung der Analyseergebnisse je nach Endgerät unterscheidet. Der Pfeil führt direkt zum letzten Block.
+
+**Daten-Eingabe**  
+CSV-Upload oder Google Reviews API – das Feedback gelangt von hier in den Verarbeitungspfad.
+
+**Text-Vorverarbeitung (Tokenisierung, Chunking)**  
+Texte werden in Tokens zerlegt. Bei langen Texten erfolgt Chunking, um die 512-Token-Grenze des Modells einzuhalten.
+
+**Sentiment-Modul (BERT: nlptown/bert-base-multilingual-uncased-sentiment)**  
+Das Modell gibt eine Sternebewertung (1–5) zurück. Die Bewertung wird in Labels (positiv, neutral, negativ) überführt.
+
+**Themenmodell (LDA: CountVectorizer → LDA)**  
+Mittels CountVectorizer wird eine Dokument-Term-Matrix erstellt. LDA extrahiert auf dieser Basis Themen mit den häufigsten Schlüsselbegriffen.
+
+**Visualisierung & Export (Streamlit: DataFrame, Charts, Download-Buttons)**  
+Die Ergebnisse werden in einer interaktiven Oberfläche dargestellt. Export als CSV ist jederzeit möglich.
+
+![Modellarchitektur](docs/model_architecture.png)
+
+
 ## Installation
 
 1. Klonen Sie das Repository:
