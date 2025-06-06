@@ -98,43 +98,53 @@ if uploaded:
     else:
         st.subheader("Vorschau")
         preview = df.head(5)
-        # Dynamische Höhe für 5 Zeilen + Header
         st.dataframe(preview, height=5*35 + 50, use_container_width=True)
 
-        if st.button("Batch-Sentiment analysieren"):
-            with st.spinner("Analysiere Batch…"):
-                labs, scs = [], []
-                for txt in df["text"].astype(str):
-                    out = sentiment_chunked(txt)
-                    labs.append(out["label"])
-                    scs.append(out["score"])
-            df["stimmung"] = labs
-            df["score"]    = scs
+        # Speichere den Upload im Session State
+        st.session_state["batch_input_df"] = df.copy()
 
-            st.success("Batch-Analyse abgeschlossen!")
-            st.subheader("Ergebnisse")
-            # Höhe: bis zu 800px, dann Browser-Scroll
-            rows   = df.shape[0]
-            height = min(800, rows*35 + 50)
-            st.dataframe(df, height=height, use_container_width=True)
+# Nur anzeigen, wenn ein Upload im State liegt
+if "batch_input_df" in st.session_state:
+    # Button für Analyse
+    if st.button("Batch-Sentiment analysieren"):
+        with st.spinner("Analysiere Batch…"):
+            labs, scs = [], []
+            for txt in st.session_state["batch_input_df"]["text"].astype(str):
+                out = sentiment_chunked(txt)
+                labs.append(out["label"])
+                scs.append(out["score"])
+        df = st.session_state["batch_input_df"].copy()
+        df["stimmung"] = labs
+        df["score"] = scs
+        # Speichere Ergebnisse im State
+        st.session_state["batch_result_df"] = df.copy()
+        st.success("Batch-Analyse abgeschlossen!")
 
-            st.download_button(
-                "Ergebnisse als CSV herunterladen",
-                data=df.to_csv(index=False),
-                file_name="sentiment_results.csv",
-                mime="text/csv"
-            )
+    # Ergebnisse zeigen, wenn vorhanden
+    if "batch_result_df" in st.session_state:
+        df = st.session_state["batch_result_df"]
+        st.subheader("Ergebnisse")
+        rows = df.shape[0]
+        height = min(800, rows*35 + 50)
+        st.dataframe(df, height=height, use_container_width=True)
 
-            if st.checkbox("Themen extrahieren"):
-                n = st.slider("Anzahl Themen", 2, 10, 5)
-                vec, lda = load_topic_components(n)
-                X = vec.fit_transform(df["text"].astype(str))
-                lda.fit(X)
-                st.write("**Top-Wörter pro Thema**")
-                terms = vec.get_feature_names_out()
-                for i, comp in enumerate(lda.components_):
-                    top10 = [terms[j] for j in comp.argsort()[-10:]]
-                    st.write(f"Topic {i+1}: {', '.join(top10)}")
+        st.download_button(
+            "Ergebnisse als CSV herunterladen",
+            data=df.to_csv(index=False),
+            file_name="sentiment_results.csv",
+            mime="text/csv"
+        )
+
+        if st.checkbox("Themen extrahieren"):
+            n = st.slider("Anzahl Themen", 2, 10, 5, key="topics_slider")
+            vec, lda = load_topic_components(n)
+            X = vec.fit_transform(df["text"].astype(str))
+            lda.fit(X)
+            st.write("**Top-Wörter pro Thema**")
+            terms = vec.get_feature_names_out()
+            for i, comp in enumerate(lda.components_):
+                top10 = [terms[j] for j in comp.argsort()[-10:]]
+                st.write(f"Topic {i+1}: {', '.join(top10)}")
 
 # ———————————————————————————————————————————
 # 4. Manuelle Einzel-Analyse

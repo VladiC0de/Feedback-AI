@@ -8,3 +8,5 @@ torch==2.1.2
 numpy==1.26.2
 matplotlib==3.8.2
 openpyxl==3.1.2
+pyLDAvis==3.4.0
+wordcloud==1.9.3

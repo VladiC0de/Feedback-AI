@@ -51,3 +51,13 @@
   - Stapel-Layout statt Spalten
   - Größere Touch-Targets (min. 44px)
   - Reduzierte Abstände
+
+  ### Hinweis zu Limitationen im CSS-Styling
+
+Die visuelle Anpassung der Anwendung erfolgte über eine eigene Datei `static/style.css`, in der Farben, Layout und Komponentendesign definiert wurden. 
+
+Dabei wurde bewusst auf eine konsistente Farbgebung mit den zentralen Farben der Anwendung (#3498db und #2c3e50) geachtet.
+
+Bei einzelnen dynamisch generierten Komponenten – insbesondere dem Slider (BaseWeb-Komponente von Streamlit) – ließ sich die Farbe des aktiven Balkens trotz gezielter Selektoren nicht vollständig überschreiben. Die Ursache liegt in der Kombination aus dynamischen Klassennamen und Inline-Styles, die nicht zuverlässig per CSS übersteuerbar sind.
+
+**Fazit:** Die Funktionalität und das visuelle Gesamtkonzept sind nicht beeinträchtigt. Die Entscheidung, diesen Punkt nicht weiter zu forcieren, basiert auf einem bewussten Abwägen zwischen Aufwand und Nutzen.
