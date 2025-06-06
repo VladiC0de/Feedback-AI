@@ -3,6 +3,9 @@ import pandas as pd
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # ———————————————————————————————————————————
 # Page-Config: Wide Layout
@@ -160,3 +163,20 @@ if st.button("Einzel-Sentiment analysieren"):
         st.write(f"**Stimmung:** {out['label']}  &nbsp;&nbsp; **Score:** {out['score']:.2f}")
     else:
         st.warning("Bitte erst Text eingeben.")
+# ———————————————————————————————————————————
+# 5. Optional: Keyword-Analyse
+# ———————————————————————————————————————————
+st.markdown("---")
+st.subheader("Zusätzliche Keyword-Analyse")
+
+from model.keywords import extract_top_keywords
+
+keyword_input = st.text_area("Texteingabe für Keyword-Analyse (mehrere Sätze möglich):", key="keywords_input")
+
+if st.button("Top-Keywords anzeigen"):
+    if keyword_input.strip():
+        keywords = extract_top_keywords([keyword_input])
+        st.write("**Häufigste Wörter:**")
+        st.markdown(", ".join(keywords))
+    else:
+        st.warning("Bitte gib einen Text ein.")
